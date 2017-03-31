@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="database" class="Database">
+        <property name="name" value="XYZ"/>
+        <property name="port" value="123"/>
+    </bean>
+
+    <bean id="teaBean" class="Tea"/>
+
+    <bean id="ExpressTeaBean" class="ExpressTea"/>
+
+    <bean id="teaRestaurant" class="Restaurant" scope="prototype">
+  <property name="hotDrink" ref="teaBean"/>
+    </bean>
+
+
+    <bean id="teaBean1" class="Restaurant" autowire="byName"/>
+
+    <!--<bean id="teaBean2" class="Restaurant" autowire="byType"/>
+    -->
+
+    <bean id="teaBean3" class="Restaurant" autowire="constructor"/>
+
+    <bean id="hotDrink" class="Tea"/>
+
+
+    <bean id="teaBean4" class="Restaurant"/>
+
+
+    <bean id="ExpressTeaRestaurant" class="Restaurant">
+       <property name="hotDrink">
+           <bean  class="ExpressTea"/>
+       </property>
+    </bean>
+    <bean id="complexBean" class="Complex">
+        <property name="list">
+            <list>
+            <value>1</value>
+            <value>2</value>
+            <value>3</value>
+            </list>
+        </property>
+
+        <property name="map">
+            <map>
+                <entry key="1" value="one"/>
+                <entry key="2" value="two"/>
+            </map>
+        </property>
+        <property name="set">
+            <set>
+                <value>1</value>
+                <value>1</value>
+                <value>2</value>
+            </set>
+        </property>
+    </bean>
+
+</beans>
